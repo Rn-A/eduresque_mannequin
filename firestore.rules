@@ -1,0 +1,33 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Helper Functions
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function isAdmin() {
+      return isAuthenticated() && 
+        (get(/databases/$(database)/documents/users/$(request.auth.uid)).data.role == 'admin' || 
+         ((request.auth.token.email == "jakkyindomie@gmail.com" || request.auth.token.email == "edurescuemannequin@gmail.com") && request.auth.token.email_verified == true));
+    }
+
+    // Default rules: Read for everyone, Write for Admin
+    match /{collectionName}/{docId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // Nested config rules
+    match /config/{docId} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // Specific validation for users collection
+    match /users/{userId} {
+      allow read: if isAuthenticated() && (request.auth.uid == userId || isAdmin());
+      allow write: if isAdmin() || (request.auth.uid == userId && request.resource.data.role == resource.data.role);
+    }
+  }
+}

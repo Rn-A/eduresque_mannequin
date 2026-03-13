@@ -1,0 +1,161 @@
+{
+  "entities": {
+    "SiteConfig": {
+      "title": "Site Configuration",
+      "description": "Global site settings and logos",
+      "type": "object",
+      "properties": {
+        "logoUrl": { "type": "string" },
+        "footerLogoUrl": { "type": "string" },
+        "phone": { "type": "string" },
+        "email": { "type": "string" },
+        "address": { "type": "string" },
+        "instagram": { "type": "string" },
+        "facebook": { "type": "string" },
+        "youtube": { "type": "string" },
+        "whatsapp": { "type": "string" }
+      }
+    },
+    "HeroConfig": {
+      "title": "Hero Configuration",
+      "description": "Hero section content",
+      "type": "object",
+      "properties": {
+        "title": { "type": "string" },
+        "subtitle": { "type": "string" },
+        "description": { "type": "string" },
+        "bgImage": { "type": "string" },
+        "sliderImages": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    },
+    "ProductConfig": {
+      "title": "Product Configuration",
+      "description": "Product section content",
+      "type": "object",
+      "properties": {
+        "sectionTitle": { "type": "string" },
+        "sectionDesc": { "type": "string" },
+        "mainImage": { "type": "string" },
+        "mainTitle": { "type": "string" },
+        "mainDesc": { "type": "string" },
+        "benefitsTitle": { "type": "string" },
+        "benefitsDesc": { "type": "string" },
+        "benefits": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "title": { "type": "string" },
+              "desc": { "type": "string" },
+              "icon": { "type": "string" }
+            }
+          }
+        },
+        "specs": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "label": { "type": "string" },
+              "value": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "TeamConfig": {
+      "title": "Team Configuration",
+      "description": "Team section general content",
+      "type": "object",
+      "properties": {
+        "description": { "type": "string" },
+        "vision": { "type": "string" },
+        "mission": { "type": "string" },
+        "goals": { "type": "string" },
+        "groupPhoto": { "type": "string" }
+      }
+    },
+    "Package": {
+      "title": "Package",
+      "description": "Product package information",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "price": { "type": "string" },
+        "popular": { "type": "boolean" },
+        "image": { "type": "string" },
+        "desc": { "type": "string" },
+        "waLink": { "type": "string" },
+        "features": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": { "type": "string" },
+              "included": { "type": "boolean" }
+            }
+          }
+        },
+        "order": { "type": "number" }
+      }
+    },
+    "TeamMember": {
+      "title": "Team Member",
+      "description": "Team member details",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "role": { "type": "string" },
+        "image": { "type": "string" },
+        "instagram": { "type": "string" },
+        "order": { "type": "number" }
+      }
+    },
+    "FAQ": {
+      "title": "FAQ",
+      "description": "Frequently Asked Questions",
+      "type": "object",
+      "properties": {
+        "q": { "type": "string" },
+        "a": { "type": "string" },
+        "order": { "type": "number" }
+      }
+    },
+    "Testimonial": {
+      "title": "Testimonial",
+      "description": "Customer testimonials",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "role": { "type": "string" },
+        "text": { "type": "string" },
+        "rating": { "type": "number" },
+        "order": { "type": "number" }
+      }
+    },
+    "Documentation": {
+      "title": "Documentation",
+      "description": "Gallery images and captions",
+      "type": "object",
+      "properties": {
+        "image": { "type": "string" },
+        "caption": { "type": "string" },
+        "order": { "type": "number" }
+      }
+    }
+  },
+  "firestore": {
+    "config/site": { "schema": "SiteConfig", "description": "Global site settings" },
+    "config/hero": { "schema": "HeroConfig", "description": "Hero section content" },
+    "config/product": { "schema": "ProductConfig", "description": "Product section content" },
+    "config/team": { "schema": "TeamConfig", "description": "Team section general content" },
+    "packages": { "schema": "Package", "description": "Product packages" },
+    "team": { "schema": "TeamMember", "description": "Individual team members" },
+    "faqs": { "schema": "FAQ", "description": "FAQs" },
+    "testimonials": { "schema": "Testimonial", "description": "Testimonials" },
+    "docs": { "schema": "Documentation", "description": "Documentation gallery" }
+  }
+}
