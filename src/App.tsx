@@ -489,7 +489,7 @@ function Legalitas({ config, certifications }: { config: any, certifications: an
                 viewport={{ once: true }}
                 className="bg-white rounded-3xl overflow-hidden border border-slate-100 shadow-xl shadow-slate-200/50 group"
               >
-                <div className="aspect-[4/3] overflow-hidden bg-slate-50">
+                <div className="aspect-[9/16] overflow-hidden bg-slate-50">
                   {cert.image && (
                     <img 
                       src={cert.image} 
