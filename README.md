@@ -1,19 +1,25 @@
-<div align="center">
-</div>
+# EduResque Mannequin
 
-# Run and deploy your AI Studio app
+EduResque Mannequin adalah sebuah aplikasi web edukatif yang dirancang untuk membantu pengguna memahami konsep visualisasi dan simulasi menggunakan model mannequin secara interaktif. Website ini menyediakan tampilan yang sederhana dan mudah digunakan untuk mengeksplorasi berbagai pose atau representasi visual yang berkaitan dengan pembelajaran.
 
-This contains everything you need to run your app locally.
+Aplikasi ini bertujuan untuk memberikan pengalaman belajar yang lebih interaktif dengan memanfaatkan teknologi web modern.
 
-View your app in AI Studio: https://ai.studio/apps/430d6c1e-c25e-4203-a191-fc5637d2878e
+## Fitur Utama
 
-## Run Locally
+- Visualisasi mannequin secara interaktif
+- Antarmuka pengguna yang sederhana dan responsif
+- Navigasi yang mudah digunakan
+- Tampilan berbasis web yang dapat diakses melalui berbagai perangkat
+- Optimal untuk pembelajaran visual
 
-**Prerequisites:**  Node.js
+## Teknologi yang Digunakan
 
+Proyek ini dibangun menggunakan beberapa teknologi web modern, antara lain:
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+- **HTML5** – Struktur dasar halaman web
+- **CSS3** – Pengaturan tampilan dan layout
+- **JavaScript** – Interaktivitas pada halaman
+- **React.js** – Library untuk membangun antarmuka pengguna
+- **Vercel** – Platform deployment dan hosting
+
+## Struktur Proyek
