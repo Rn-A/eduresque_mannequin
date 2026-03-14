@@ -305,7 +305,7 @@ function ProductInfo({ config }: { config: any }) {
 
         <div className="bg-white border border-slate-200 rounded-[2rem] p-6 lg:p-10">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12">
-            <div className="bg-slate-50 rounded-2xl border border-slate-300/50 overflow-hidden relative min-h-[450px]">
+            <div className="bg-slate-50 rounded-2xl border border-slate-300/50 overflow-hidden relative aspect-[1.2/1]">
               {config.sliderImages && config.sliderImages.length > 0 ? (
                 <ImageSlider images={config.sliderImages} className="w-full h-full" />
               ) : (
@@ -438,7 +438,7 @@ function Team({ config, members }: { config: any, members: any[] }) {
         </div>
 
         <div className="flex flex-col lg:flex-row gap-8 items-stretch">
-          <div className="w-full lg:w-1/2 rounded-[2rem] overflow-hidden border border-slate-200 relative min-h-[400px]">
+          <div className="w-full lg:w-1/2 rounded-[2rem] overflow-hidden border border-slate-200 relative aspect-[1.25/1]">
             {config.groupPhoto && <img src={config.groupPhoto} alt="Tim" className="absolute inset-0 w-full h-full object-cover" referrerPolicy="no-referrer" />}
           </div>
           <div className="w-full lg:w-1/2 flex flex-col gap-4 justify-center">
