@@ -414,6 +414,49 @@ export default function AdminCMS() {
                 </div>
                 <hr className="border-slate-800" />
                 <ImageUpload label="Gambar Produk Utama" value={productConfig.mainImage} onChange={(url) => setProductConfig({...productConfig, mainImage: url})} />
+                
+                <div className="space-y-4">
+                  <div className="flex justify-between items-center">
+                    <label className="text-sm text-slate-400 font-bold">Slider Images Produk</label>
+                    <button 
+                      onClick={() => setProductConfig({...productConfig, sliderImages: [...(productConfig.sliderImages || []), ""]})}
+                      className="flex items-center gap-1 bg-blue-600/20 text-blue-400 hover:bg-blue-600/30 px-3 py-1 rounded-lg text-xs font-bold transition-all"
+                    >
+                      <Plus className="w-4 h-4" /> Tambah Slide
+                    </button>
+                  </div>
+                  
+                  <div className="space-y-4">
+                    {(productConfig.sliderImages || []).map((img: string, i: number) => (
+                      <div key={i} className="relative group bg-slate-800/20 p-4 rounded-2xl border border-slate-800/50">
+                        <div className="flex gap-4 items-start">
+                          <div className="flex-1">
+                            <ImageUpload 
+                              label={`Slide ${i + 1}`} 
+                              value={img} 
+                              onChange={(url) => {
+                                const newImgs = [...productConfig.sliderImages];
+                                newImgs[i] = url;
+                                setProductConfig({...productConfig, sliderImages: newImgs});
+                              }} 
+                            />
+                          </div>
+                          <button 
+                            onClick={() => {
+                              const newImgs = [...productConfig.sliderImages];
+                              newImgs.splice(i, 1);
+                              setProductConfig({...productConfig, sliderImages: newImgs});
+                            }} 
+                            className="mt-9 p-2 text-red-500 hover:bg-red-500/20 rounded-xl transition-all"
+                          >
+                            <Trash2 className="w-5 h-5" />
+                          </button>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
                 <div className="space-y-2">
                   <label className="text-sm text-slate-400">Judul Produk Utama</label>
                   <input className="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-2" value={productConfig.mainTitle || ""} onChange={(e) => setProductConfig({...productConfig, mainTitle: e.target.value})} />
@@ -542,7 +585,7 @@ export default function AdminCMS() {
                 <h2 className="text-3xl font-bold text-white capitalize">{activeTab}</h2>
                 <button 
                   onClick={() => {
-                    if (activeTab === 'packages') addItem('packages', { name: "Paket Baru", price: "0", desc: "", features: [], popular: false, image: "", waLink: "" });
+                    if (activeTab === 'packages') addItem('packages', { name: "Paket Baru", price: "0", desc: "", features: [], popular: false, image: "", sliderImages: [], waLink: "" });
                     if (activeTab === 'team') addItem('team', { name: "Nama", role: "Posisi", image: "", instagram: "" });
                     if (activeTab === 'certifications') addItem('certifications', { title: "Nama Dokumen", description: "Keterangan singkat", image: "" });
                     if (activeTab === 'faqs') addItem('faqs', { q: "Pertanyaan?", a: "Jawaban." });
@@ -564,7 +607,49 @@ export default function AdminCMS() {
                     </div>
                     <textarea className="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-2" value={item.desc} onChange={(e) => updateItem('packages', item.id, { desc: e.target.value })} placeholder="Deskripsi" />
                     <input className="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-2" value={item.waLink} onChange={(e) => updateItem('packages', item.id, { waLink: e.target.value })} placeholder="Link WhatsApp (https://wa.me/...)" />
-                    <ImageUpload label="Gambar Paket" value={item.image} onChange={(url) => updateItem('packages', item.id, { image: url })} />
+                    
+                    <div className="space-y-4">
+                      <div className="flex justify-between items-center">
+                        <label className="text-sm text-slate-400 font-bold">Slider Images Paket</label>
+                        <button 
+                          onClick={() => updateItem('packages', item.id, { sliderImages: [...(item.sliderImages || []), ""] })}
+                          className="flex items-center gap-1 bg-blue-600/20 text-blue-400 hover:bg-blue-600/30 px-3 py-1 rounded-lg text-xs font-bold transition-all"
+                        >
+                          <Plus className="w-4 h-4" /> Tambah Slide
+                        </button>
+                      </div>
+                      <div className="grid grid-cols-1 gap-4">
+                        {(item.sliderImages || []).map((img: string, i: number) => (
+                          <div key={i} className="relative group bg-slate-800/20 p-4 rounded-2xl border border-slate-800/50">
+                            <div className="flex gap-4 items-start">
+                              <div className="flex-1">
+                                <ImageUpload 
+                                  label={`Slide ${i + 1}`} 
+                                  value={img} 
+                                  onChange={(url) => {
+                                    const newImgs = [...item.sliderImages];
+                                    newImgs[i] = url;
+                                    updateItem('packages', item.id, { sliderImages: newImgs });
+                                  }} 
+                                />
+                              </div>
+                              <button 
+                                onClick={() => {
+                                  const newImgs = [...item.sliderImages];
+                                  newImgs.splice(i, 1);
+                                  updateItem('packages', item.id, { sliderImages: newImgs });
+                                }} 
+                                className="mt-9 p-2 text-red-500 hover:bg-red-500/20 rounded-xl transition-all"
+                              >
+                                <Trash2 className="w-5 h-5" />
+                              </button>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    <ImageUpload label="Gambar Utama Paket (Fallback)" value={item.image} onChange={(url) => updateItem('packages', item.id, { image: url })} />
                     <div className="flex justify-between items-center pt-4 border-t border-slate-800">
                       <label className="flex items-center gap-2 cursor-pointer text-sm">
                         <input type="checkbox" checked={item.popular} onChange={(e) => updateItem('packages', item.id, { popular: e.target.checked })} /> Populer?
