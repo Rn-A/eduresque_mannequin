@@ -524,7 +524,7 @@ function Pricing({ packages }: { packages: any[] }) {
           {packages.map((pkg: any, idx: number) => (
             <div key={idx} className={`relative bg-white border-2 rounded-[2rem] p-8 flex flex-col ${pkg.popular ? "border-blue-600 shadow-2xl shadow-blue-600/10" : "border-slate-100 shadow-xl shadow-slate-200/50"}`}>
               {pkg.popular && <span className="absolute -top-4 left-1/2 -translate-x-1/2 bg-blue-600 text-white px-4 py-1 rounded-full text-sm font-bold uppercase tracking-wider">Terpopuler</span>}
-              <div className="mb-8 rounded-2xl overflow-hidden aspect-video relative">
+              <div className="mb-8 rounded-2xl overflow-hidden aspect-[1/1]">
                 {pkg.sliderImages && pkg.sliderImages.length > 0 ? (
                   <ImageSlider images={pkg.sliderImages} className="w-full h-full" />
                 ) : (
