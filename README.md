@@ -21,5 +21,3 @@ Proyek ini dibangun menggunakan beberapa teknologi web modern, antara lain:
 - **JavaScript** – Interaktivitas pada halaman
 - **React.js** – Library untuk membangun antarmuka pengguna
 - **Vercel** – Platform deployment dan hosting
-
-## Struktur Proyek
