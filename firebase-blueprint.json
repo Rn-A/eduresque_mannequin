@@ -145,6 +145,17 @@
         "caption": { "type": "string" },
         "order": { "type": "number" }
       }
+    },
+    "Certification": {
+      "title": "Certification",
+      "description": "Certification and legality documents",
+      "type": "object",
+      "properties": {
+        "image": { "type": "string" },
+        "title": { "type": "string" },
+        "description": { "type": "string" },
+        "order": { "type": "number" }
+      }
     }
   },
   "firestore": {
@@ -152,10 +163,12 @@
     "config/hero": { "schema": "HeroConfig", "description": "Hero section content" },
     "config/product": { "schema": "ProductConfig", "description": "Product section content" },
     "config/team": { "schema": "TeamConfig", "description": "Team section general content" },
+    "config/legal": { "schema": "object", "description": "Legal section title and description" },
     "packages": { "schema": "Package", "description": "Product packages" },
     "team": { "schema": "TeamMember", "description": "Individual team members" },
     "faqs": { "schema": "FAQ", "description": "FAQs" },
     "testimonials": { "schema": "Testimonial", "description": "Testimonials" },
-    "docs": { "schema": "Documentation", "description": "Documentation gallery" }
+    "docs": { "schema": "Documentation", "description": "Documentation gallery" },
+    "certifications": { "schema": "Certification", "description": "Certification documents" }
   }
 }
