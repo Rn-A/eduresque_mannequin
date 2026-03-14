@@ -85,6 +85,24 @@ const DEFAULT_TEAM_CONFIG = {
   groupPhoto: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=800&h=600"
 };
 
+const DEFAULT_LEGAL_CONFIG = {
+  title: "Sertifikasi & Legalitas",
+  description: "EduRescue telah memiliki legalitas dan sertifikasi resmi sebagai produk inovasi yang terdaftar dan diakui secara hukum."
+};
+
+const DEFAULT_CERTIFICATIONS = [
+  {
+    title: "Surat NIB (Nomor Induk Berusaha)",
+    description: "Legalitas usaha resmi dari pemerintah Indonesia",
+    image: "https://images.unsplash.com/photo-1589994965851-aea192a5b8d2?auto=format&fit=crop&q=80&w=800"
+  },
+  {
+    title: "Sertifikat HKI (Hak Kekayaan Intelektual)",
+    description: "Perlindungan hukum atas inovasi produk EduRescue",
+    image: "https://images.unsplash.com/photo-1589391886645-d51941baf7fb?auto=format&fit=crop&q=80&w=800"
+  }
+];
+
 const DEFAULT_PACKAGES = [
   {
     name: "Basic",
@@ -115,7 +133,7 @@ const DEFAULT_DOCS = [
 
 function Navbar({ config }: { config: any }) {
   const [isOpen, setIsOpen] = useState(false);
-  const links = ["Beranda", "Produk", "Tim", "Paket", "Testimoni", "Dokumentasi", "FAQ"];
+  const links = ["Beranda", "Produk", "Tim", "Legalitas", "Paket", "Testimoni", "Dokumentasi", "FAQ"];
 
   return (
     <nav className="fixed top-0 w-full z-50 bg-slate-900/95 backdrop-blur-md border-b border-slate-800">
@@ -396,6 +414,51 @@ function Team({ config, members }: { config: any, members: any[] }) {
   );
 }
 
+function Legalitas({ config, certifications }: { config: any, certifications: any[] }) {
+  return (
+    <section id="legalitas" className="py-20 bg-white">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mb-6">{config.title || "Sertifikasi & Legalitas"}</h2>
+          <p className="text-slate-600 text-lg max-w-3xl mx-auto leading-relaxed">
+            {config.description}
+          </p>
+        </div>
+
+        <div className="mt-20">
+          <h3 className="text-3xl font-bold text-slate-900 text-center mb-12">Dokumen Resmi</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+            {certifications.map((cert: any, idx: number) => (
+              <motion.div 
+                key={idx}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="bg-white rounded-3xl overflow-hidden border border-slate-100 shadow-xl shadow-slate-200/50 group"
+              >
+                <div className="aspect-[4/3] overflow-hidden bg-slate-50">
+                  {cert.image && (
+                    <img 
+                      src={cert.image} 
+                      alt={cert.title} 
+                      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" 
+                      referrerPolicy="no-referrer"
+                    />
+                  )}
+                </div>
+                <div className="p-8">
+                  <h4 className="text-xl font-bold text-slate-900 mb-2">{cert.title}</h4>
+                  <p className="text-slate-500">{cert.description}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function Pricing({ packages }: { packages: any[] }) {
   return (
     <section id="paket" className="py-20 bg-white">
@@ -597,9 +660,11 @@ function MainSite() {
   const { data: hero } = useFirestoreDoc<any>("config", "hero");
   const { data: product } = useFirestoreDoc<any>("config", "product");
   const { data: teamConfig } = useFirestoreDoc<any>("config", "team");
+  const { data: legalConfig } = useFirestoreDoc<any>("config", "legal");
   
   const { data: packages } = useFirestore<any>("packages");
   const { data: team } = useFirestore<any>("team");
+  const { data: certifications } = useFirestore<any>("certifications");
   const { data: faqs } = useFirestore<any>("faqs");
   const { data: testimonials } = useFirestore<any>("testimonials");
   const { data: docs } = useFirestore<any>("docs");
@@ -608,9 +673,11 @@ function MainSite() {
   const heroData = hero || DEFAULT_HERO;
   const productData = product || DEFAULT_PRODUCT;
   const teamConfigData = teamConfig || DEFAULT_TEAM_CONFIG;
+  const legalConfigData = legalConfig || DEFAULT_LEGAL_CONFIG;
   
   const packagesData = packages.length > 0 ? packages : DEFAULT_PACKAGES;
   const teamData = team.length > 0 ? team : DEFAULT_TEAM;
+  const certificationsData = certifications.length > 0 ? certifications : DEFAULT_CERTIFICATIONS;
   const faqsData = faqs.length > 0 ? faqs : DEFAULT_FAQS;
   const testimonialsData = testimonials.length > 0 ? testimonials : DEFAULT_TESTIMONIALS;
   const docsData = docs.length > 0 ? docs : DEFAULT_DOCS;
@@ -623,6 +690,7 @@ function MainSite() {
       <Benefits config={productData} />
       <Specs config={productData} />
       <Team config={teamConfigData} members={teamData} />
+      <Legalitas config={legalConfigData} certifications={certificationsData} />
       <Pricing packages={packagesData} />
       <Testimonials data={testimonialsData} />
       <Documentation data={docsData} />
