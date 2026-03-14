@@ -35,6 +35,7 @@ import {
   Upload,
   Layout,
   Info,
+  ShieldCheck,
   Check,
   X,
   PlusCircle,
@@ -100,9 +101,11 @@ export default function AdminCMS() {
   const [heroConfig, setHeroConfig] = useState<any>(null);
   const [productConfig, setProductConfig] = useState<any>(null);
   const [teamConfig, setTeamConfig] = useState<any>(null);
+  const [legalConfig, setLegalConfig] = useState<any>(null);
 
   const { data: packages } = useFirestore<any>("packages");
   const { data: team } = useFirestore<any>("team");
+  const { data: certifications } = useFirestore<any>("certifications");
   const { data: faqs } = useFirestore<any>("faqs");
   const { data: testimonials } = useFirestore<any>("testimonials");
   const { data: docs } = useFirestore<any>("docs");
@@ -122,7 +125,8 @@ export default function AdminCMS() {
     const unsubHero = onSnapshot(doc(db, "config", "hero"), (s) => setHeroConfig(s.data() || {}));
     const unsubProduct = onSnapshot(doc(db, "config", "product"), (s) => setProductConfig(s.data() || {}));
     const unsubTeam = onSnapshot(doc(db, "config", "team"), (s) => setTeamConfig(s.data() || {}));
-    return () => { unsubSite(); unsubHero(); unsubProduct(); unsubTeam(); };
+    const unsubLegal = onSnapshot(doc(db, "config", "legal"), (s) => setLegalConfig(s.data() || {}));
+    return () => { unsubSite(); unsubHero(); unsubProduct(); unsubTeam(); unsubLegal(); };
   }, [user]);
 
   const login = async () => {
@@ -170,6 +174,7 @@ export default function AdminCMS() {
     try {
       const list = collectionName === 'packages' ? packages : 
                    collectionName === 'team' ? team : 
+                   collectionName === 'certifications' ? certifications :
                    collectionName === 'faqs' ? faqs : 
                    collectionName === 'testimonials' ? testimonials : docs;
       const order = list.length;
@@ -211,6 +216,7 @@ export default function AdminCMS() {
             { id: "hero", label: "Beranda", icon: ImageIcon },
             { id: "product", label: "Produk", icon: Package },
             { id: "teamConfig", label: "Konten Tim", icon: Info },
+            { id: "legalConfig", label: "Sertifikasi", icon: ShieldCheck },
           ].map((tab) => (
             <button
               key={tab.id}
@@ -230,6 +236,7 @@ export default function AdminCMS() {
           {[
             { id: "packages", label: "Paket", icon: Package },
             { id: "team", label: "Anggota Tim", icon: Users },
+            { id: "certifications", label: "Dokumen Legal", icon: ShieldCheck },
             { id: "testimonials", label: "Testimoni", icon: MessageSquare },
             { id: "docs", label: "Dokumentasi", icon: ImageIcon },
             { id: "faqs", label: "FAQ", icon: HelpCircle },
@@ -486,8 +493,30 @@ export default function AdminCMS() {
             </div>
           )}
 
+          {/* Legal Config */}
+          {activeTab === "legalConfig" && legalConfig && (
+            <div className="space-y-8">
+              <div className="flex justify-between items-center">
+                <h2 className="text-3xl font-bold text-white">Sertifikasi & Legalitas</h2>
+                <button onClick={() => saveConfig("legal", legalConfig)} className="flex items-center gap-2 bg-green-600 hover:bg-green-500 text-white px-6 py-2 rounded-xl font-bold transition-all">
+                  <Save className="w-5 h-5" /> Simpan
+                </button>
+              </div>
+              <div className="space-y-6 bg-slate-900 p-8 rounded-2xl border border-slate-800">
+                <div className="space-y-2">
+                  <label className="text-sm text-slate-400">Judul Seksi</label>
+                  <input className="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-2" value={legalConfig.title || ""} onChange={(e) => setLegalConfig({...legalConfig, title: e.target.value})} />
+                </div>
+                <div className="space-y-2">
+                  <label className="text-sm text-slate-400">Deskripsi Seksi</label>
+                  <textarea className="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-2" value={legalConfig.description || ""} onChange={(e) => setLegalConfig({...legalConfig, description: e.target.value})} />
+                </div>
+              </div>
+            </div>
+          )}
+
           {/* List Collections */}
-          {["packages", "team", "testimonials", "docs", "faqs"].includes(activeTab) && (
+          {["packages", "team", "certifications", "testimonials", "docs", "faqs"].includes(activeTab) && (
             <div className="space-y-8">
               <div className="flex justify-between items-center">
                 <h2 className="text-3xl font-bold text-white capitalize">{activeTab}</h2>
@@ -495,6 +524,7 @@ export default function AdminCMS() {
                   onClick={() => {
                     if (activeTab === 'packages') addItem('packages', { name: "Paket Baru", price: "0", desc: "", features: [], popular: false, image: "", waLink: "" });
                     if (activeTab === 'team') addItem('team', { name: "Nama", role: "Posisi", image: "", instagram: "" });
+                    if (activeTab === 'certifications') addItem('certifications', { title: "Nama Dokumen", description: "Keterangan singkat", image: "" });
                     if (activeTab === 'faqs') addItem('faqs', { q: "Pertanyaan?", a: "Jawaban." });
                     if (activeTab === 'testimonials') addItem('testimonials', { name: "Nama", role: "Posisi", text: "", rating: 5 });
                     if (activeTab === 'docs') addItem('docs', { caption: "Keterangan", image: "" });
@@ -537,6 +567,19 @@ export default function AdminCMS() {
                       <ImageUpload label="Foto Profil" value={item.image} onChange={(url) => updateItem('team', item.id, { image: url })} />
                     </div>
                     <button onClick={() => deleteItem('team', item.id)} className="text-red-500 self-start p-2 rounded-lg hover:bg-red-500/10 transition-colors">
+                      <Trash2 className="w-5 h-5" />
+                    </button>
+                  </div>
+                ))}
+
+                {activeTab === 'certifications' && certifications.map((item: any) => (
+                  <div key={item.id} className="bg-slate-900 border border-slate-800 p-6 rounded-2xl flex gap-6">
+                    <div className="flex-1 space-y-4">
+                      <input className="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-2" value={item.title} onChange={(e) => updateItem('certifications', item.id, { title: e.target.value })} placeholder="Judul Dokumen" />
+                      <textarea className="w-full bg-slate-800 border border-slate-700 rounded-lg px-4 py-2" value={item.description} onChange={(e) => updateItem('certifications', item.id, { description: e.target.value })} placeholder="Keterangan Singkat" />
+                      <ImageUpload label="Gambar Dokumen" value={item.image} onChange={(url) => updateItem('certifications', item.id, { image: url })} />
+                    </div>
+                    <button onClick={() => deleteItem('certifications', item.id)} className="text-red-500 self-start p-2 rounded-lg hover:bg-red-500/10 transition-colors">
                       <Trash2 className="w-5 h-5" />
                     </button>
                   </div>
