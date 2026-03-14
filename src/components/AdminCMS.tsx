@@ -341,31 +341,51 @@ export default function AdminCMS() {
                 <ImageUpload label="Background Image" value={heroConfig.bgImage} onChange={(url) => setHeroConfig({...heroConfig, bgImage: url})} />
                 
                 <div className="space-y-4">
-                  <label className="text-sm text-slate-400">Slider Images</label>
-                  <div className="grid grid-cols-3 gap-4">
+                  <div className="flex justify-between items-center">
+                    <label className="text-sm text-slate-400 font-bold">Slider Images (Gambar Berjalan)</label>
+                    <button 
+                      onClick={() => setHeroConfig({...heroConfig, sliderImages: [...(heroConfig.sliderImages || []), ""]})}
+                      className="flex items-center gap-1 bg-blue-600/20 text-blue-400 hover:bg-blue-600/30 px-3 py-1 rounded-lg text-xs font-bold transition-all"
+                    >
+                      <Plus className="w-4 h-4" /> Tambah Slide
+                    </button>
+                  </div>
+                  
+                  <div className="space-y-4">
                     {(heroConfig.sliderImages || []).map((img: string, i: number) => (
-                      <div key={i} className="relative group">
-                        {img && <img src={img} className="w-full aspect-video object-cover rounded-lg border border-slate-700" alt="" />}
-                        <button onClick={() => {
-                          const newImgs = [...heroConfig.sliderImages];
-                          newImgs.splice(i, 1);
-                          setHeroConfig({...heroConfig, sliderImages: newImgs});
-                        }} className="absolute top-1 right-1 bg-red-600 p-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
-                          <X className="w-3 h-3" />
-                        </button>
+                      <div key={i} className="relative group bg-slate-800/20 p-4 rounded-2xl border border-slate-800/50">
+                        <div className="flex gap-4 items-start">
+                          <div className="flex-1">
+                            <ImageUpload 
+                              label={`Slide ${i + 1}`} 
+                              value={img} 
+                              onChange={(url) => {
+                                const newImgs = [...heroConfig.sliderImages];
+                                newImgs[i] = url;
+                                setHeroConfig({...heroConfig, sliderImages: newImgs});
+                              }} 
+                            />
+                          </div>
+                          <button 
+                            onClick={() => {
+                              const newImgs = [...heroConfig.sliderImages];
+                              newImgs.splice(i, 1);
+                              setHeroConfig({...heroConfig, sliderImages: newImgs});
+                            }} 
+                            className="mt-9 p-2 text-red-500 hover:bg-red-500/20 rounded-xl transition-all"
+                            title="Hapus Slide"
+                          >
+                            <Trash2 className="w-5 h-5" />
+                          </button>
+                        </div>
                       </div>
                     ))}
-                    <label className="flex flex-col items-center justify-center border-2 border-dashed border-slate-700 rounded-lg hover:border-blue-500 cursor-pointer transition-colors aspect-video">
-                      <PlusCircle className="w-6 h-6 text-slate-500" />
-                      <input type="file" className="hidden" onChange={async (e) => {
-                        const file = e.target.files?.[0];
-                        if (!file) return;
-                        const storageRef = ref(storage, `hero/${Date.now()}_${file.name}`);
-                        await uploadBytes(storageRef, file);
-                        const url = await getDownloadURL(storageRef);
-                        setHeroConfig({...heroConfig, sliderImages: [...(heroConfig.sliderImages || []), url]});
-                      }} />
-                    </label>
+
+                    {(!heroConfig.sliderImages || heroConfig.sliderImages.length === 0) && (
+                      <div className="text-center py-8 border-2 border-dashed border-slate-800 rounded-2xl text-slate-500 text-sm">
+                        Belum ada gambar slider. Klik "Tambah Slide" untuk memulai.
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>
