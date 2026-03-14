@@ -39,6 +39,10 @@
         "sectionTitle": { "type": "string" },
         "sectionDesc": { "type": "string" },
         "mainImage": { "type": "string" },
+        "sliderImages": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
         "mainTitle": { "type": "string" },
         "mainDesc": { "type": "string" },
         "benefitsTitle": { "type": "string" },
@@ -87,6 +91,10 @@
         "price": { "type": "string" },
         "popular": { "type": "boolean" },
         "image": { "type": "string" },
+        "sliderImages": {
+          "type": "array",
+          "items": { "type": "string" }
+        },
         "desc": { "type": "string" },
         "waLink": { "type": "string" },
         "features": {
