@@ -80,8 +80,7 @@ export default function App() {
           
           {/* Logo Brand */}
           <div className="flex items-center gap-2 select-none cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-            <img 
-              src="/images/logo.PNG" 
+            <img loading="lazy" src="/images/logo.webp" 
               alt="EduRescue Logo" 
               className="w-10 h-10 md:w-11 md:h-11 object-contain drop-shadow-md rounded-[10px]"
             />
@@ -537,8 +536,7 @@ export default function App() {
                   
                   {/* Package Image */}
                   <div className="w-full h-44 rounded-2xl overflow-hidden border border-stone-150 relative">
-                    <img 
-                      src={pkg.image} 
+                    <img loading="lazy" src={pkg.image} 
                       alt={pkg.name} 
                       className="w-full h-full object-cover"
                       referrerPolicy="no-referrer"
@@ -646,8 +644,7 @@ export default function App() {
                 key={idx} 
                 className="group relative rounded-2xl overflow-hidden border border-stone-200 shadow-xs aspect-[4/3] bg-stone-100"
               >
-                <img 
-                  src={item.image} 
+                <img loading="lazy" src={item.image} 
                   alt={item.caption} 
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   referrerPolicy="no-referrer"
@@ -893,8 +890,7 @@ export default function App() {
 
                         {/* Crew headshot in list */}
                         <div className="w-10 h-10 rounded-xl overflow-hidden border border-stone-200 shrink-0">
-                          <img 
-                            src={member.avatar} 
+                          <img loading="lazy" src={member.avatar} 
                             alt={member.name}
                             referrerPolicy="no-referrer"
                             className="w-full h-full object-cover"

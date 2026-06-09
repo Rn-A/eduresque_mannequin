@@ -7,7 +7,7 @@ export const TEAM_MEMBERS: Member[] = [
     role: "Pembimbing",
     division: "Clinical & Academic Advisor",
     idNumber: "RESCUE-ADV-2026-00",
-    avatar: "/images/pembimbing.png",
+    avatar: "/images/pembimbing.webp",
     bio: "Dosen Pembimbing dan Penasihat Akademik EduRescue. Berperan aktif dalam membimbing serta mengarahkan penelitian, metodologi klinis, validasi akademis, dan pengembangan riset simulator CPR agar sesuai standar pendidikan kedokteran & keperawatan.",
     skills: ["Clinical Education", "Medical Research", "Academic Mentorship", "Nursing & Emergency Care"],
     email: "hanif.adhi@edurescue.my.id",
@@ -20,7 +20,7 @@ export const TEAM_MEMBERS: Member[] = [
     role: "Ketua Tim & Ahli Medis",
     division: "Medical & Emergency Lead",
     idNumber: "RESCUE-LEAD-2026-01",
-    avatar: "/images/Alma.png",
+    avatar: "/images/Alma.webp",
     bio: "Ketua Tim sekaligus Spesialis Medis EduRescue. Berfokus pada perumusan standar klinis instrumen resusitasi jantung paru (RJP) berbasis pedoman bantuan hidup dasar medis yang presisi, interaktif, dan mudah dimengerti.",
     skills: ["Emergency Medicine", "Clinical Guidelines", "CPR Standardization", "Medical Simulation"],
     email: "fata.nur@edurescue.my.id",
@@ -33,7 +33,7 @@ export const TEAM_MEMBERS: Member[] = [
     role: "Publication & Software Engineer",
     division: "Software & Publication",
     idNumber: "RESCUE-SW-2026-02",
-    avatar: "/images/saya.png",
+    avatar: "/images/saya.webp",
     bio: "Spesialis rekayasa perangkat lunak dan publikasi riset. Rendra bertanggung jawab dalam mengintegrasikan sistem sensor cerdas ke platform web/mobile, serta menyusun dokumentasi teknis dan publikasi ilmiah berkala terkait produk EduRescue.",
     skills: ["Software Engineering", "Research Publications", "IoT Integration", "Technical Writing"],
     email: "rendra.aji@edurescue.my.id",
@@ -46,7 +46,7 @@ export const TEAM_MEMBERS: Member[] = [
     role: "Finance & Ahli Medis",
     division: "Finance & Healthcare Advisory",
     idNumber: "RESCUE-FIN-2026-03",
-    avatar: "/images/cindy.png",
+    avatar: "/images/cindy.webp",
     bio: "Spesialis Manajemen Keuangan Kesehatan sekaligus Ahli Medis EduRescue. Cindy bertanggung jawab atas alokasi anggaran, analisis efisiensi biaya produksi simulator CPR, serta pengawasan kepatuhan klinis pengadaan alat kesehatan.",
     skills: ["Healthcare Finance", "Clinical Compliance", "Cost Administration", "Resource Allocation"],
     email: "cindy.febriani@edurescue.my.id",
@@ -59,7 +59,7 @@ export const TEAM_MEMBERS: Member[] = [
     role: "Procurement & Ahli Medis",
     division: "Procurement & Lifecycle Advisory",
     idNumber: "RESCUE-PRC-2026-04",
-    avatar: "/images/april.png",
+    avatar: "/images/april.webp",
     bio: "Spesialis Pengadaan dan Logistik Alat Kesehatan sekaligus Ahli Medis EduRescue. Dwi bertanggung jawab atas manajemen rantai pasok material simulator CPR, pengujian standar higienitas bahan baku, serta koordinasi distribusi ke seluruh wilayah Indonesia.",
     skills: ["Healthcare Logistics", "Procurement Strategy", "Supply Chain Management", "Clinical Safety Standards"],
     email: "dwi.apriliana@edurescue.my.id",
@@ -68,7 +68,7 @@ export const TEAM_MEMBERS: Member[] = [
   }
 ];
 
-export const GROUP_PHOTO_URL = "/images/Team.png";
+export const GROUP_PHOTO_URL = "/images/Team.webp";
 
 export const VISION_MISSION = {
   description: "Kami adalah tim yang berdedikasi untuk meningkatkan kesiapsiagaan masyarakat menghadapi henti jantung melalui penyediaan instrumen simulasi medis berkualitas tinggi dengan biaya terjangkau.",
@@ -98,7 +98,7 @@ export const PRICING_PACKAGES: PricingPackage[] = [
     name: "Paket Basic",
     price: "900.000",
     popular: false,
-    image: "/images/basic.png",
+    image: "/images/basic.webp",
     desc: "Paket ideal untuk pelatihan dasar CPR di sekolah, komunitas, dan instansi dengan anggaran terbatas.",
     features: [
       { name: "Phantom CPR Mannequin", included: true },
@@ -119,7 +119,7 @@ export const PRICING_PACKAGES: PricingPackage[] = [
     name: "Paket Plus",
     price: "1.200.000",
     popular: true,
-    image: "/images/Plus.png",
+    image: "/images/Plus.webp",
     desc: "Paket lengkap dengan fitur premium untuk pelatihan profesional di rumah sakit, kampus, dan institusi kesehatan.",
     features: [
       { name: "Phantom CPR Mannequin", included: true },
@@ -202,15 +202,15 @@ export interface GalleryItem {
 
 export const GALLERY_ITEMS: GalleryItem[] = [
   {
-    image: "/images/dok2.PNG",
+    image: "/images/dok2.webp",
     caption: "Promosi Dan Sosialisasi Di MTs Miftakhul Ulum Bulakan"
   },
   {
-    image: "/images/dok3.PNG",
+    image: "/images/dok3.webp",
     caption: "(Promosi Dan Sosialisasi Di Dusun Sodong Basari Pemalang)"
   },
   {
-    image: "/images/dok1.PNG",
+    image: "/images/dok1.webp",
     caption: "Promosi Dan Sosialisasi Di SMA N 1 Banyumas"
   }
 ];

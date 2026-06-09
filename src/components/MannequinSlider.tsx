@@ -3,13 +3,13 @@ import { motion, AnimatePresence } from "motion/react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const SLIDE_IMAGES = [
-  "/images/edu0.png",
-  "/images/edu1.jpg",
-  "/images/edu2.jpg",
-  "/images/edu3.jpg",
-  "/images/edu4.jpg",
-  "/images/edu5.jpg",
-  "/images/edu6.jpg"
+  "/images/edu0.webp",
+  "/images/edu1.webp",
+  "/images/edu2.webp",
+  "/images/edu3.webp",
+  "/images/edu4.webp",
+  "/images/edu5.webp",
+  "/images/edu6.webp"
 ];
 
 export default function MannequinSlider() {

@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const EXACT_IMAGES = [
-  { src: "/images/gambar 1.png", bg: "#F4845F" },
-  { src: "/images/gambar 2.png", bg: "#6BBF7A" },
-  { src: "/images/gambar 3.png", bg: "#E882B4" },
-  { src: "/images/gambar 4.png", bg: "#6EB5FF" }
+  { src: "/images/gambar 1.webp", bg: "#F4845F" },
+  { src: "/images/gambar 2.webp", bg: "#6BBF7A" },
+  { src: "/images/gambar 3.webp", bg: "#E882B4" },
+  { src: "/images/gambar 4.webp", bg: "#6EB5FF" }
 ];
 
 export default function CharacterCarousel() {
@@ -221,8 +221,7 @@ export default function CharacterCarousel() {
                 }
               }}
             >
-              <img
-                src={img.src}
+              <img loading="lazy" src={img.src}
                 alt={`EduRescue Figurines ${idx + 1}`}
                 referrerPolicy="no-referrer"
                 className="w-auto h-full object-contain pointer-events-none select-none drop-shadow-[0_20px_40px_rgba(0,0,0,0.3)]"
