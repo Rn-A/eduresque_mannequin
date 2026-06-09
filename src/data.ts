@@ -202,15 +202,15 @@ export interface GalleryItem {
 
 export const GALLERY_ITEMS: GalleryItem[] = [
   {
-    image: "/images/dok2.png",
+    image: "/images/dok2.PNG",
     caption: "Promosi Dan Sosialisasi Di MTs Miftakhul Ulum Bulakan"
   },
   {
-    image: "/images/dok3.png",
+    image: "/images/dok3.PNG",
     caption: "(Promosi Dan Sosialisasi Di Dusun Sodong Basari Pemalang)"
   },
   {
-    image: "/images/dok1.png",
+    image: "/images/dok1.PNG",
     caption: "Promosi Dan Sosialisasi Di SMA N 1 Banyumas"
   }
 ];
